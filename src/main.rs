@@ -9,7 +9,7 @@ fn main() {
     testing_result();
     propogating_errors().unwrap();
 
-    let number_list = vec![1,2,3,4];
+    let number_list = vec![1, 2, 3, 4];
     let biggest_number = generic_largest(&number_list);
     println!("Biggest Number: {:?}", biggest_number);
 
@@ -53,13 +53,15 @@ fn testing_result() {
     // Here we shadow f into the contents of the Result return, our initial goal for f
     let f = match f {
         Ok(file) => file,
-        Err(ref error) if error.kind() == ErrorKind::NotFound => { // Luv match guards, error would be moved so ref
+        Err(ref error) if error.kind() == ErrorKind::NotFound => {
+            // Luv match guards, error would be moved so ref
             // Could add another match arm here but expect helper is prettier
             File::create("Hello.txt").expect("Couldn't create Hello.txt")
-        },
-        Err(_error) => {//same ignore var convention as elixir
+        }
+        Err(_error) => {
+            //same ignore var convention as elixir
             panic!("WAHHHBUFFET")
-        },
+        }
     };
 
     println!("{:?}", f);
